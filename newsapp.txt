@@ -1,0 +1,52 @@
+News app website: https://newsapi.org/docs/endpoints/everything
+News app api key: a1ace81e11144788909208aef9323531
+URI: https://newsapi.org/v2/everything?q=technology&sortBy=popularity&apiKey=a1ace81e11144788909208aef9323531
+
+- 2 screens:home and category screen and another for article screen (detail news screen).
+- On home display top headlines, technology and sports
+- smooth navigation
+
+Please find the below tech assignment for flutter, Objective: Your task is to develop a Flutter 
+application that fetches news articles from a public news API and presents them in a user-friendly interface. 
+The app should allow users to browse through different categories of news and read detailed articles. 
+Additionally, it should handle API calls efficiently, provide smooth navigation, and offer a visually appealing 
+user experience.
+
+Requirements :
+
+API Integration :
+* Utilize a public news API such as NewsAPI (https://newsapi.org/) or The New York Times API 
+(https://developer.nytimes.com/apis)
+* Fetch news articles based on different categories (e.g., technology, sports, entertainment).
+* Handle API authentication (if required) and ensure secure communication with the API endpoint.
+
+User Interface:
+* Design a user interface that consists of multiple screens:
+* Home screen: Display a list of news categories (e.g., Top Headlines, Technology, Sports).
+* Category screen: Show a list of news articles within a selected category.
+* Article screen: Present the detailed content of a selected news article.
+* Implement smooth transitions between screens and provide intuitive navigation.
+* Use appropriate UI components such as cards, lists, and images to enhance the visual presentation of news articles.
+
+Functionality :
+* Allow users to select a news category from the home screen and view related articles.
+* Enable users to tap on a news article to read its full content in a separate screen.
+* Implement a mechanism to load more articles as the user scrolls through the list (pagination).
+* Include options for refreshing the news feed and returning to the home screen from any screen within the app.
+
+Error Handling and Loading States:
+* Display loading indicators while fetching news articles from the API.
+* Handle network errors, API errors, and edge cases gracefully by showing informative error messages to the user.
+
+Additional Features (Optional):
+* Implement search functionality to allow users to search for specific news articles or topics.
+* Provide options for users to bookmark/save articles for future reference.
+* Incorporate settings/preferences screen to customize app behavior (e.g., theme selection, font size).
+
+Submission Guidelines:
+* Submit the source code of your Flutter application along with clear instructions on how to run the app.
+* Include any necessary dependencies or setup instructions required to build and run the application.
+* Optionally, you can provide a brief overview of your app's architecture, design patterns used, and any third-party 
+libraries utilized.
+
+Note - It is mandatory to use state management in the task. You may choose any state management method of your preference.
