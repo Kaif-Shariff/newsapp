@@ -11,7 +11,7 @@ class ArticleScreen extends StatelessWidget {
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
-            expandedHeight: 300,
+            expandedHeight: 400,
             flexibleSpace: FlexibleSpaceBar(
               titlePadding: EdgeInsets.all(20),
               background: Stack(
@@ -40,25 +40,30 @@ class ArticleScreen extends StatelessWidget {
               ),
             ),
           ),
-          SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: 10,
-              (context, index) {
-                return ListTile(
-                  title: Text(
-                    sampleDescription,
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                spacing: 10,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "February 12, 2025   •   Wired",
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 12,
                     ),
                   ),
-                  subtitle: Text(
-                    sampleDescription,
+                  Text(
+                    sampleHeading,
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 20,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
-                );
-              },
+                  Text(sampleDescription),
+                  Text("President Trump has surrounded himself with crypto enthusiasts. Thats no coincidence. In 2024 the cryptocurrency industry spent millions backing friendly congressional candidates, many of whom were R… [+817 chars]"),
+                ],
+              ),
             ),
           ),
         ],

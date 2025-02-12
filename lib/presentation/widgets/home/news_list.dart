@@ -53,14 +53,14 @@ class NewsList extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.w600,
-                              color: isLightTheme(context) ? AppColors.white : AppColors.lightTextColor,
+                              color: isLightTheme(context) ? AppColors.lightTextColor2 : AppColors.lightTextColor,
                             ),
                           ),
                           WidgetSpan(
                             child: SizedBox(height: 45),
                           ),
                           TextSpan(
-                            text: "Feb 12, 2025   •   Wired",
+                            text: "February 12, 2025   •   Wired",
                             style: TextStyle(
                               fontSize: 14,
                               color: AppColors.lightTextColor,
