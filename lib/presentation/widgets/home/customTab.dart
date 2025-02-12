@@ -13,27 +13,24 @@ class CustomTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: null,
-      child: Container(
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: (isLightTheme(context) ? AppColors.lightBorder : AppColors.darkBorder),
-          ),
-          borderRadius: BorderRadius.circular(8),
+    return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: (isLightTheme(context) ? AppColors.lightBorder : AppColors.darkBorder),
         ),
-        padding: const EdgeInsets.symmetric(
-          horizontal: 10,
-          vertical: 6,
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 4),
-        child: Center(
-          child: Text(
-            statusTxt,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: (isLightTheme(context) ? AppColors.lightTextColor : AppColors.darkTextColor),
-            ),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      padding: const EdgeInsets.symmetric(
+        horizontal: 10,
+        vertical: 6,
+      ),
+      margin: const EdgeInsets.symmetric(horizontal: 4),
+      child: Center(
+        child: Text(
+          statusTxt,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: (isLightTheme(context) ? AppColors.lightTextColor : AppColors.darkTextColor),
           ),
         ),
       ),

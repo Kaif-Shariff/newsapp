@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:newsapp/core/apptheme/colors.dart';
 import 'package:newsapp/state/article_bloc.dart';
 import 'package:newsapp/state/article_state.dart';
 import 'package:newsapp/utils/constants.dart';
@@ -38,7 +39,10 @@ class _CarouselContainerState extends State<CarouselContainer> {
           return SliverToBoxAdapter(
             child: SizedBox(
               height: height / 3.5,
-              child: Center(child: CircularProgressIndicator()),
+              child: Center(
+                  child: CircularProgressIndicator(
+                color: AppColors.blue,
+              )),
             ),
           );
         } else if (state is ArticleError) {
@@ -52,11 +56,11 @@ class _CarouselContainerState extends State<CarouselContainer> {
           final articles = state.articles;
           return SliverToBoxAdapter(
             child: ConstrainedBox(
-              constraints: BoxConstraints(maxHeight: height / 3.5),
+              constraints: BoxConstraints(maxHeight: height / 3.2),
               child: CarouselView.weighted(
                 controller: _carouselController,
                 itemSnapping: true,
-                flexWeights: [1, 7, 1],
+                flexWeights: [1, 14, 1],
                 onTap: (int index) {
                   final article = articles[index];
                   Navigator.push(
@@ -103,7 +107,7 @@ class _CarouselContainerState extends State<CarouselContainer> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 15),
+                          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 15),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             mainAxisSize: MainAxisSize.min,
