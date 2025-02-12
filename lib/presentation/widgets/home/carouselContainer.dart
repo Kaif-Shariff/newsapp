@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/state/article_bloc.dart';
 import 'package:newsapp/state/article_state.dart';
 import 'package:newsapp/utils/constants.dart';
+import 'package:newsapp/utils/dateFormatter.dart';
 
 import '../../../state/article_event.dart';
 import '../../screens/article_screen.dart';
@@ -65,7 +66,7 @@ class _CarouselContainerState extends State<CarouselContainer> {
                         heading: article.title ?? "Unknown",
                         desc: article.description ?? "Unknown",
                         content: article.content ?? "Unknown",
-                        date: article.publishedAt ?? "Unknown",
+                        date: dateFormatter(article.publishedAt!),
                         authorName: article.author ?? "Unknown",
                         publisher: article.source?.name ?? "Unknown",
                         imgUrl: article.urlToImage ?? "Unknown",
