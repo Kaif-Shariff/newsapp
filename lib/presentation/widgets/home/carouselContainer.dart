@@ -25,15 +25,32 @@ class _CarouselContainerState extends State<CarouselContainer> {
           controller: _carouselController,
           itemSnapping: true,
           flexWeights: [1, 7, 1],
+          onTap: (int index) {
+            final article = TopNews.values[index];
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ArticleScreen(
+                  heading: article.headline,
+                  desc: article.description,
+                  content: article.description,
+                  date: article.date,
+                  authorName: article.authorName,
+                  publisher: article.publisher,
+                  imgUrl: article.imageUrl,
+                ),
+              ),
+            );
+          },
           children: TopNews.values.map(
-            (TopNews topnews) {
+            (TopNews topNews) {
               return Stack(
                 alignment: AlignmentDirectional.bottomStart,
                 children: [
                   ClipRect(
                     child: SizedBox.expand(
                       child: Image.network(
-                        topnews.imageUrl,
+                        topNews.imageUrl,
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -60,7 +77,7 @@ class _CarouselContainerState extends State<CarouselContainer> {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          topnews.headline,
+                          topNews.headline,
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w900,

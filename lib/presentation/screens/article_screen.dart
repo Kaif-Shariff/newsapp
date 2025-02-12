@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../utils/constants.dart';
 
 class ArticleScreen extends StatelessWidget {
   final String heading;
