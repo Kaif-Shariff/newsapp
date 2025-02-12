@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../../utils/constants.dart';
+import '../../screens/article_screen.dart';
 
 class CarouselContainer extends StatefulWidget {
   const CarouselContainer({

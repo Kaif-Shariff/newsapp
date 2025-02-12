@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:newsapp/presentation/screens/article_screen.dart';
-
 import '../../../core/apptheme/colors.dart';
 import '../../../utils/constants.dart';
 import '../../../utils/getTheme.dart';
@@ -22,7 +20,15 @@ class NewsList extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ArticleScreen(),
+                  builder: (context) => ArticleScreen(
+                    heading: sampleHeading,
+                    desc: sampleDescription,
+                    content: sampleDescription,
+                    date: 'February 12, 2025',
+                    authorName: "Joel Khalili",
+                    publisher: "Wired",
+                    imgUrl: sampleImage,
+                  ),
                 ),
               );
             },
