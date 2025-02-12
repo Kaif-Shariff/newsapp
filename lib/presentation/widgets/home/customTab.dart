@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/apptheme/colors.dart';
 
+import '../../../utils/getTheme.dart';
+
 class CustomTab extends StatelessWidget {
   final String statusTxt;
 
@@ -11,13 +13,12 @@ class CustomTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isLightTheme = Theme.of(context).brightness == Brightness.light;
     return GestureDetector(
       onTap: null,
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(
-            color: (isLightTheme ? AppColors.lightBorder : AppColors.darkBorder),
+            color: (isLightTheme(context) ? AppColors.lightBorder : AppColors.darkBorder),
           ),
           borderRadius: BorderRadius.circular(8),
         ),
@@ -31,7 +32,7 @@ class CustomTab extends StatelessWidget {
             statusTxt,
             textAlign: TextAlign.center,
             style: TextStyle(
-              color: (isLightTheme ? AppColors.lightTextColor : AppColors.darkTextColor),
+              color: (isLightTheme(context) ? AppColors.lightTextColor : AppColors.darkTextColor),
             ),
           ),
         ),

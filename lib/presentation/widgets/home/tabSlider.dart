@@ -12,6 +12,7 @@ class TabSlider extends StatelessWidget {
       child: ListView.builder(
         itemCount: categories.length,
         scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.symmetric(horizontal: 8),
         itemBuilder: (context, index) {
           return CustomTab(statusTxt: categories[index]);
         },
