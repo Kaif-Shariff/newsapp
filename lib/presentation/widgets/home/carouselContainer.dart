@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
-
+import 'package:newsapp/utils/string_shortner.dart';
 import '../../../utils/constants.dart';
 
 class CarouselContainer extends StatelessWidget {
   final TopNews topNews;
 
-  const   CarouselContainer({
+  const CarouselContainer({
     super.key,
     required this.topNews,
   });
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.sizeOf(context).width;
     return Stack(
       alignment: AlignmentDirectional.bottomStart,
       children: [
         ClipRect(
-          child: OverflowBox(
-            maxWidth: width * 7,
-            minWidth: width * 7,
+          child: SizedBox.expand(
             child: Image.network(
               topNews.imageUrl,
-              fit: BoxFit.contain,
+              fit: BoxFit.cover,
             ),
           ),
         ),
@@ -48,21 +45,17 @@ class CarouselContainer extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                topNews.headline,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 2,
+                stringShortner(text: topNews.headline, characterCount: 38),
                 style: TextStyle(
-                  fontSize: 24,
+                  fontSize: 20,
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
                 ),
               ),
               Text(
-                topNews.summary,
-                overflow: TextOverflow.ellipsis,
-                maxLines: 3,
+                stringShortner(text: topNews.summary, characterCount: 110),
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 13,
                   fontWeight: FontWeight.w500,
                   color: Colors.white,
                 ),

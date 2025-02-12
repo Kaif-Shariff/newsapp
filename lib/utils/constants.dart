@@ -1,4 +1,4 @@
-List<String> categories = ["Technology", "Sports", "Movies", "T.V Shows", "Politics", "Science"];
+List<String> categories = ["Technology", "Sports", "Movies", "T.V Shows", "Politics", "Science", "More"];
 
 enum TopNews {
   topNews0(

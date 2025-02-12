@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:newsapp/presentation/widgets/home/customTab.dart';
 import 'package:newsapp/utils/constants.dart';
-
 import '../widgets/home/carouselContainer.dart';
 import '../widgets/home/tabSlider.dart';
 
@@ -45,6 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           TabSlider(),
+
         ],
       ),
     );

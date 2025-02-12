@@ -23,13 +23,16 @@ class CustomTab extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(
           horizontal: 10,
-          vertical: 4,
+          vertical: 6,
         ),
-        margin: const EdgeInsets.symmetric(horizontal: 5),
-        child: Text(
-          statusTxt,
-          style: TextStyle(
-            color: (isLightTheme ? AppColors.lightTextColor : AppColors.darkTextColor),
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        child: Center(
+          child: Text(
+            statusTxt,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: (isLightTheme ? AppColors.lightTextColor : AppColors.darkTextColor),
+            ),
           ),
         ),
       ),
