@@ -26,24 +26,36 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Column(
-        spacing: 20,
-        children: [
-          ConstrainedBox(
-            constraints: BoxConstraints(maxHeight: height / 1.8),
-            child: CarouselView.weighted(
-              controller: _carouselController,
-              itemSnapping: true,
-              flexWeights: [1, 7, 1],
-              children: TopNews.values.map(
-                (TopNews topnews) {
-                  return CarouselContainer(topNews: topnews);
-                },
-              ).toList(),
+      body: CustomScrollView(
+        slivers: [
+          SliverToBoxAdapter(
+            child: ConstrainedBox(
+              constraints: BoxConstraints(maxHeight: height / 1.8),
+              child: CarouselView.weighted(
+                controller: _carouselController,
+                itemSnapping: true,
+                flexWeights: [1, 7, 1],
+                children: TopNews.values.map(
+                  (TopNews topnews) {
+                    return CarouselContainer(topNews: topnews);
+                  },
+                ).toList(),
+              ),
             ),
           ),
-          TabSlider(),
-
+          SliverToBoxAdapter(
+            child: TabSlider(),
+          ),
+          SliverList(
+            delegate: SliverChildBuilderDelegate(
+              childCount: 10,
+              (context, index) {
+                return ListTile(
+                  title: Text("One"),
+                );
+              },
+            ),
+          ),
         ],
       ),
     );
