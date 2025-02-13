@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class ArticleScreen extends StatelessWidget {
   final String heading;
   final String desc;
@@ -31,7 +30,7 @@ class ArticleScreen extends StatelessWidget {
             iconTheme: IconThemeData(color: Colors.white),
             flexibleSpace: ClipRRect(
               borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(12), // Rounded bottom corners
+                bottomLeft: Radius.circular(12),
                 bottomRight: Radius.circular(12),
               ),
               child: FlexibleSpaceBar(
@@ -75,7 +74,7 @@ class ArticleScreen extends StatelessWidget {
                       fontSize: 12,
                     ),
                   ),
-                  SizedBox(height: 10), // Add spacing
+                  SizedBox(height: 10),
                   Text(
                     heading,
                     style: TextStyle(

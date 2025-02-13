@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:newsapp/presentation/screens/article_screen.dart';
 import 'package:newsapp/presentation/widgets/home/custom_list_tile.dart';
 import '../../../core/apptheme/colors.dart';
+import '../../../core/error/error_widget.dart';
 import '../../../state/article/article_bloc.dart';
 import '../../../state/article/article_event.dart';
 import '../../../state/article/article_state.dart';
-import '../../../utils/constants.dart';
-import '../../../utils/dateFormatter.dart';
-import '../../../utils/getTheme.dart';
 
 class NewsList extends StatefulWidget {
   final String topic;
@@ -33,6 +30,9 @@ class _NewsListState extends State<NewsList> {
 
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.sizeOf(context).height;
+    final double width = MediaQuery.sizeOf(context).width;
+
     return BlocBuilder<ArticleBloc, ArticleState>(
       builder: (context, state) {
         if (state is ArticleLoading) {
@@ -45,11 +45,13 @@ class _NewsListState extends State<NewsList> {
             ),
           );
         } else if (state is ArticleError) {
-          return SliverToBoxAdapter(
-            child: SizedBox(
-              child: Center(child: Text("Error fetching news")),
-            ),
-          );
+          return state.statusCode == 429
+              ? MyErrorWidget(width: width, height: height, message: "Api Exhausted")
+              : SliverToBoxAdapter(
+                  child: Center(
+                    child: Text("Something went wrong"),
+                  ),
+                );
         } else if (state is ArticleLoaded) {
           final articles = state.articles;
 
@@ -58,26 +60,7 @@ class _NewsListState extends State<NewsList> {
               childCount: articles.length,
               (context, index) {
                 final article = articles[index];
-
-                return InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ArticleScreen(
-                          heading: article.title ?? "Unknown",
-                          desc: article.description ?? "Unknown",
-                          content: article.content ?? "Unknown",
-                          date: dateFormatter(article.publishedAt!),
-                          authorName: article.author ?? "Unknown",
-                          publisher: article.source?.name ?? "Unknown",
-                          imgUrl: article.urlToImage ?? "Unknown",
-                        ),
-                      ),
-                    );
-                  },
-                  child: CustomListTile(article: article),
-                );
+                return CustomListTile(article: article);
               },
             ),
           );

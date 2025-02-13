@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:newsapp/presentation/screens/category_screen.dart';
 import 'package:newsapp/presentation/widgets/home/customTab.dart';
 import 'package:newsapp/utils/constants.dart';
-import '../../../utils/all_category_bottom_sheet.dart';
+import 'all_category_bottom_sheet.dart';
 
 class TabSlider extends StatelessWidget {
   const TabSlider({super.key});
@@ -20,7 +20,7 @@ class TabSlider extends StatelessWidget {
           return GestureDetector(
             onTap: () {
               if (index == categories.length - 1) {
-                allcategory(context);
+                allCategory(context);
               } else {
                 Navigator.push(
                   context,

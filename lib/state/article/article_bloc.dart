@@ -19,7 +19,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
       emit(ArticleLoaded(article));
     } catch (e) {
       emit(
-        ArticleError("Failed article setting"),
+        ArticleError("Failed getting top-headlines article", 429),
       );
     }
   }
@@ -31,7 +31,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
       emit(ArticleLoaded(article));
     } catch (e) {
       emit(
-        ArticleError("Failed article setting"),
+        ArticleError("Failed getting everything article", 429),
       );
     }
   }

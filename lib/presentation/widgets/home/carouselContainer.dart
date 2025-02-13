@@ -4,6 +4,7 @@ import 'package:newsapp/core/apptheme/colors.dart';
 import 'package:newsapp/state/article/article_bloc.dart';
 import 'package:newsapp/utils/constants.dart';
 import 'package:newsapp/utils/dateFormatter.dart';
+import '../../../core/error/error_widget.dart';
 import '../../../state/article/article_event.dart';
 import '../../../state/article/article_state.dart';
 import '../../screens/article_screen.dart';
@@ -31,6 +32,7 @@ class _CarouselContainerState extends State<CarouselContainer> {
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.sizeOf(context).height;
+    final double width = MediaQuery.sizeOf(context).width;
 
     return BlocBuilder<ArticleBloc, ArticleState>(
       builder: (context, state) {
@@ -45,12 +47,13 @@ class _CarouselContainerState extends State<CarouselContainer> {
             ),
           );
         } else if (state is ArticleError) {
-          return SliverToBoxAdapter(
-            child: SizedBox(
-              height: height / 3.5,
-              child: Center(child: Text("Error fetching news")),
-            ),
-          );
+          return state.statusCode == 429
+              ? MyErrorWidget(width: width, height: height, message: "Api Exhausted")
+              : SliverToBoxAdapter(
+                  child: Center(
+                    child: Text("Something went wrong"),
+                  ),
+                );
         } else if (state is ArticleLoaded) {
           final articles = state.articles;
           return SliverToBoxAdapter(

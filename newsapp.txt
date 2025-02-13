@@ -1,5 +1,7 @@
 News app website: https://newsapi.org/docs/endpoints/everything
 News app api key: a1ace81e11144788909208aef9323531
+New api key: c3cc90f242ec4cceb4f1db4b918c1a27
+New api key 2: 336fcd6357d24cf8868de6f64507d1b0
 URI: https://newsapi.org/v2/everything?q=technology&sortBy=popularity&apiKey=a1ace81e11144788909208aef9323531
 
 - 2 screens:home and category screen and another for article screen (detail news screen).

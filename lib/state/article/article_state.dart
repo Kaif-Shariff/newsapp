@@ -14,6 +14,7 @@ class ArticleLoaded implements ArticleState {
 
 class ArticleError implements ArticleState {
   final String error;
+  final int statusCode;
 
-  ArticleError(this.error);
+  ArticleError(this.error, this.statusCode);
 }
