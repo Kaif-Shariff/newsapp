@@ -1,55 +1,74 @@
-# News App
+**# News App Overview**
 
-## Overview
-This Flutter application fetches news articles from a public news API and presents them in a user-friendly interface. The app allows users to browse different categories of news and read detailed articles. It handles API calls efficiently, provides smooth navigation, and offers a visually appealing user experience.
+## **Overview**
+This is a Flutter news application that allows users to browse and read news articles based on different categories. The app supports pagination for seamless news browsing and includes a dark/light theme that adapts to the device's system theme.
 
-## API Details
-- **News API Endpoint:** [NewsAPI](https://newsapi.org/docs/endpoints/everything)
-- **API Key:** `a1ace81e11144788909208aef9323531`
-- **URI:** `https://newsapi.org/v2/everything?q=technology&sortBy=popularity&apiKey=a1ace81e11144788909208aef9323531`
+## **Key Features**
+- Users can select a news category from the home screen to view related articles.
+- Users can tap on a news article to read its full content on a separate screen.
+- Implemented infinite scrolling to load more articles as users scroll through the list (pagination).
+- Navigation options to return to the home screen from any screen within the app.
+- Displays loading indicators while fetching articles from the API.
+- Dark and light theme support based on the device’s theme.
+- App icon added for a polished look.
 
-## Screens
-1. **Home Screen**: Displays top headlines, technology, and sports news.
-2. **Category Screen**: Lists news articles within a selected category.
-3. **Article Screen**: Displays the detailed content of a selected news article.
+## **Tech Stack**
+- **Flutter Version:** 3.27.1
+- **State Management:** BLoC
+- **API Handling:** Retrofit (using Dio)
+- **News API Source:** [NewsAPI.org](https://newsapi.org/)
 
-## Features
-### API Integration
-- Utilizes a public news API such as [NewsAPI](https://newsapi.org/) or [The New York Times API](https://developer.nytimes.com/apis).
-- Fetches news articles based on different categories (e.g., Technology, Sports, Entertainment).
-- Handles API authentication and ensures secure communication with the API endpoint.
+## **Project Structure**
+```
+assets
 
-### User Interface
-- Home screen: Displays a list of news categories (Top Headlines, Technology, Sports).
-- Category screen: Shows a list of news articles within a selected category.
-- Article screen: Presents the detailed content of a selected news article.
-- Implements smooth transitions between screens with intuitive navigation.
-- Uses UI components such as cards, lists, and images for an enhanced visual experience.
+lib/
+├───core
+│   ├───apptheme
+│   ├───error
+│   └───network
+├───model
+├───presentation
+│   ├───screens
+│   └───widgets
+│       └───home
+├───repository
+├───state
+│   ├───article
+│   ├───carousel
+│   └───category
+└───utils
+```
 
-### Functionality
-- Allows users to select a news category from the home screen and view related articles.
-- Enables users to tap on a news article to read its full content in a separate screen.
-- Implements pagination to load more articles as the user scrolls.
-- Includes options for refreshing the news feed and navigating back to the home screen.
+## **Setup and Installation**
 
-### Error Handling & Loading States
-- Displays loading indicators while fetching news articles.
-- Handles network errors, API errors, and edge cases gracefully by showing informative error messages.
+### **Prerequisites**
+Ensure you have Flutter 3.27.1 installed. If not, install it from the [official Flutter website](https://flutter.dev/docs/get-started/install).
 
-### Additional Features (Optional)
-- **Search Functionality**: Allows users to search for specific news articles or topics.
-- **Bookmarking**: Users can save articles for future reference.
-- **Settings/Preferences**: Customization options such as theme selection and font size.
+### **Steps to Run the App**
+1. Clone the repository:
+   ```sh
+   git clone <repository_url>
+   ```
+2. Navigate to the project directory:
+   ```sh
+   cd news_app
+   ```
+3. Install dependencies:
+   ```sh
+   flutter pub get
+   ```
+4. Run the app on a connected device or emulator:
+   ```sh
+   flutter run
+   ```
 
-## Submission Guidelines
-- Submit the source code along with clear instructions on how to run the app.
-- Include necessary dependencies and setup instructions.
-- Optionally, provide an overview of the app’s architecture, design patterns, and third-party libraries used.
+## **API Configuration**
+This project uses [NewsAPI.org](https://newsapi.org/) for fetching news articles. To run the app, you need to obtain an API key and set it up in your project.
 
-## State Management
-- It is **mandatory** to use state management in the task.
-- You may choose any state management method of your preference.
+1. Get a free API key from [NewsAPI.org](https://newsapi.org/).
+2. Add the API key to your environment variables or a config file in the project.
 
----
-This README provides a structured and comprehensive guide for the project. Let me know if you need any modifications!
+## **Contact**
+If you have any questions or need further assistance, feel free to reach out!
 

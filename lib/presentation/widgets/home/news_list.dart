@@ -3,73 +3,78 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/presentation/widgets/home/custom_list_tile.dart';
 import '../../../core/apptheme/colors.dart';
 import '../../../core/error/error_widget.dart';
-import '../../../state/article/article_bloc.dart';
-import '../../../state/article/article_event.dart';
-import '../../../state/article/article_state.dart';
+import '../../../state/category/category_bloc.dart';
+import '../../../state/category/category_state.dart';
+import '../../../utils/dateFormatter.dart';
+import '../../screens/article_screen.dart';
 
-class NewsList extends StatefulWidget {
-  final String topic;
-
+class NewsList extends StatelessWidget {
   const NewsList({
     super.key,
-    required this.topic,
+    required this.width,
+    required this.height,
   });
 
-  @override
-  State<NewsList> createState() => _NewsListState();
-}
-
-class _NewsListState extends State<NewsList> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ArticleBloc>().add(FetchCategory(widget.topic, 20));
-    });
-  }
+  final double width;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
-    final double height = MediaQuery.sizeOf(context).height;
-    final double width = MediaQuery.sizeOf(context).width;
-
-    return BlocBuilder<ArticleBloc, ArticleState>(
+    return BlocBuilder<CategoryBloc, CategoryState>(
       builder: (context, state) {
-        if (state is ArticleLoading) {
+        if (state is CategoryLoading) {
           return SliverToBoxAdapter(
-            child: SizedBox(
-              child: Center(
-                  child: CircularProgressIndicator(
-                color: AppColors.blue,
-              )),
-            ),
-          );
-        } else if (state is ArticleError) {
-          return state.statusCode == 429
-              ? MyErrorWidget(width: width, height: height, message: "Api Exhausted")
-              : SliverToBoxAdapter(
-                  child: Center(
-                    child: Text("Something went wrong"),
-                  ),
-                );
-        } else if (state is ArticleLoaded) {
-          final articles = state.articles;
-
-          return SliverList(
-            delegate: SliverChildBuilderDelegate(
-              childCount: articles.length,
-              (context, index) {
-                final article = articles[index];
-                return CustomListTile(article: article);
-              },
+            child: Center(
+              child: CircularProgressIndicator(color: AppColors.blue),
             ),
           );
         }
-        return SliverToBoxAdapter(
-          child: SizedBox(
-            child: Center(child: Text("Something went horribly wrong")),
-          ),
-        );
+        if (state is CategoryError) {
+          return state.statusCode == 429
+              ? MyErrorWidget(width: width, height: height, message: "Api Exhausted")
+              : SliverToBoxAdapter(
+                  child: Center(child: Text("Something went wrong")),
+                );
+        }
+        if (state is CategoryLoaded) {
+          return SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (context, index) {
+                if (index < state.articles.length) {
+                  final article = state.articles[index];
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ArticleScreen(
+                            heading: article.title ?? "Unknown",
+                            desc: article.description ?? "Unknown",
+                            content: article.content ?? "Unknown",
+                            date: dateFormatter(article.publishedAt!),
+                            authorName: article.author ?? "Unknown",
+                            publisher: article.source?.name ?? "Unknown",
+                            imgUrl: article.urlToImage ?? "Unknown",
+                          ),
+                        ),
+                      );
+                    },
+                    child: CustomListTile(article: article),
+                  );
+                } else {
+                  return SizedBox(
+                    height: 100,
+                    child: Center(
+                      child: CircularProgressIndicator(color: AppColors.blue),
+                    ),
+                  );
+                }
+              },
+              childCount: state.articles.length + (state.hasReachedMax ? 0 : 1),
+            ),
+          );
+        }
+        return SliverToBoxAdapter(child: SizedBox.shrink());
       },
     );
   }
