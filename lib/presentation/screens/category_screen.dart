@@ -19,10 +19,32 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+  late ScrollController _scrollController;
+
   @override
   void initState() {
     super.initState();
+    _scrollController = ScrollController()..addListener(_onScroll);
     _fetchCategoryNews();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.position.pixels;
+
+    if (maxScroll - currentScroll <= 200) {
+      final state = context.read<CategoryBloc>().state;
+      if (state is CategoryLoaded && !state.hasReachedMax && !state.isLoadingMore) {
+        final nextPage = state.page + 20;
+        context.read<CategoryBloc>().add(FetchCategoryEvent(widget.topicName, nextPage));
+      }
+    }
   }
 
   void _fetchCategoryNews() {
@@ -37,24 +59,22 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.topicName)),
       body: CustomScrollView(
+        controller: _scrollController, // Attach the controller
         slivers: [
           BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, state) {
               if (state is CategoryLoading) {
                 return SliverToBoxAdapter(
                   child: Center(
-                      child: CircularProgressIndicator(
-                    color: AppColors.blue,
-                  )),
+                    child: CircularProgressIndicator(color: AppColors.blue),
+                  ),
                 );
               }
               if (state is CategoryError) {
                 return state.statusCode == 429
                     ? MyErrorWidget(width: width, height: height, message: "Api Exhausted")
                     : SliverToBoxAdapter(
-                        child: Center(
-                          child: Text("Something went wrong"),
-                        ),
+                        child: Center(child: Text("Something went wrong")),
                       );
               }
               if (state is CategoryLoaded) {
@@ -86,9 +106,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
                         return SizedBox(
                           height: 100,
                           child: Center(
-                            child: CircularProgressIndicator(
-                              color: AppColors.blue,
-                            ),
+                            child: CircularProgressIndicator(color: AppColors.blue),
                           ),
                         );
                       }
