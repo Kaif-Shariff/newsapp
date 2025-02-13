@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:json_annotation/json_annotation.dart';
 import '../../model/response_model.dart';
 
 part "api_service.g.dart";
@@ -19,14 +18,6 @@ abstract class ApiService {
   @GET("/everything")
   Future<ResponseModel> getEverything(
     @Query("q") String q,
-    @Query("apiKey") String apiKey,
-    @Query("page") int page,
-    @Query("pageSize") int pageSize,
-  );
-
-  @GET("/top-headlines")
-  Future<ResponseModel> getCategoryNews(
-    @Query("category") String category,
     @Query("apiKey") String apiKey,
     @Query("page") int page,
     @Query("pageSize") int pageSize,

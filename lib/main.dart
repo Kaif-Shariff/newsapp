@@ -5,7 +5,8 @@ import 'package:newsapp/core/apptheme/app_theme.dart';
 import 'package:newsapp/core/network/api_service.dart';
 import 'package:newsapp/presentation/screens/home_screen.dart';
 import 'package:newsapp/repository/news_repository.dart';
-import 'package:newsapp/state/article_bloc.dart';
+import 'package:newsapp/state/article/article_bloc.dart';
+import 'package:newsapp/state/category/category_bloc.dart';
 
 void main() {
   final Dio dio = Dio();
@@ -25,6 +26,9 @@ class MainApp extends StatelessWidget {
       providers: [
         BlocProvider<ArticleBloc>(
           create: (context) => ArticleBloc(repository),
+        ),
+        BlocProvider<CategoryBloc>(
+          create: (context) => CategoryBloc(repository),
         ),
       ],
       child: MaterialApp(

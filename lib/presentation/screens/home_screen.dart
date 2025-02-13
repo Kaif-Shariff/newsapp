@@ -43,7 +43,9 @@ class HomeScreen extends StatelessWidget {
               ),
             ),
           ),
-          NewsList(),
+          NewsList(
+            topic: 'news',
+          ),
         ],
       ),
     );

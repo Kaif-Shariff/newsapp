@@ -26,7 +26,7 @@ class TabSlider extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) => CategoryScreen(
-                      categoryName: categoryName,
+                      topicName: categoryName,
                     ),
                   ),
                 );

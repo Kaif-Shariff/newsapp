@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/core/apptheme/colors.dart';
-import 'package:newsapp/state/article_bloc.dart';
-import 'package:newsapp/state/article_state.dart';
+import 'package:newsapp/state/article/article_bloc.dart';
 import 'package:newsapp/utils/constants.dart';
 import 'package:newsapp/utils/dateFormatter.dart';
-
-import '../../../state/article_event.dart';
+import '../../../state/article/article_event.dart';
+import '../../../state/article/article_state.dart';
 import '../../screens/article_screen.dart';
 
 class CarouselContainer extends StatefulWidget {
