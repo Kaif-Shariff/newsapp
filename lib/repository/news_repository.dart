@@ -19,9 +19,9 @@ class NewsRepository {
     }
   }
 
-  Future<List<ArticleModel>> fetchCategoryNews({required String topic}) async {
+  Future<List<ArticleModel>> fetchCategoryNews({required String topic, required int page}) async {
     try {
-      final res = await apiService.getEverything(topic, "a1ace81e11144788909208aef9323531", 5, 2);
+      final res = await apiService.getEverything(topic, "a1ace81e11144788909208aef9323531", 5, page);
       return res.articles;
     } catch (e) {
       throw Exception("Error fetching top headlines");

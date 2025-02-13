@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:newsapp/presentation/screens/article_screen.dart';
+import 'package:newsapp/presentation/widgets/home/custom_list_tile.dart';
 import '../../../core/apptheme/colors.dart';
 import '../../../state/article/article_bloc.dart';
 import '../../../state/article/article_event.dart';
@@ -75,55 +76,7 @@ class _NewsListState extends State<NewsList> {
                       ),
                     );
                   },
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Row(
-                      spacing: 10,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(10),
-                          child: Image.network(
-                            article.urlToImage ?? sampleImage,
-                            width: 120,
-                            height: 120,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Expanded(
-                          child: RichText(
-                            text: TextSpan(
-                              children: [
-                                WidgetSpan(
-                                  child: SizedBox(height: 30),
-                                ),
-                                TextSpan(
-                                  text: "${article.title ?? "Unknown"}\n",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w600,
-                                    color: isLightTheme(context) ? AppColors.lightTextColor2 : AppColors.lightTextColor,
-                                  ),
-                                ),
-                                WidgetSpan(
-                                  child: SizedBox(height: 45),
-                                ),
-                                TextSpan(
-                                  text: "${dateFormatter(article.publishedAt!)}   •   ${article.source?.name ?? "Unknown"}",
-                                  style: TextStyle(
-                                    fontSize: 14,
-                                    color: AppColors.lightTextColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            maxLines: 14,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                  child: CustomListTile(article: article),
                 );
               },
             ),

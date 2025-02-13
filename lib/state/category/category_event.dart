@@ -1,9 +1,8 @@
 abstract interface class CategoryEvent {}
 
-class FetchTopHeadlines implements CategoryEvent {}
-
 class FetchCategory implements CategoryEvent {
   final String topic;
+  final int page;
 
-  FetchCategory(this.topic);
+  FetchCategory(this.topic, {this.page = 2});
 }

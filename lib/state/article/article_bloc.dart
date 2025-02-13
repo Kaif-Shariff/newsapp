@@ -27,7 +27,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   Future<void> _onFetchCategory(FetchCategory event, Emitter<ArticleState> emit) async {
     emit(ArticleLoading());
     try {
-      final article = await repository.fetchCategoryNews(topic: event.topic);
+      final article = await repository.fetchCategoryNews(topic: event.topic, page: 10);
       emit(ArticleLoaded(article));
     } catch (e) {
       emit(
