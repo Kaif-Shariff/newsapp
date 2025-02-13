@@ -66,7 +66,9 @@ class CustomListTile extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   const SizedBox(height: 8),
-                  Row(
+                  Wrap(
+                    spacing: 4,
+                    crossAxisAlignment: WrapCrossAlignment.center,
                     children: [
                       Text(
                         dateFormatter(article.publishedAt!),
@@ -75,7 +77,6 @@ class CustomListTile extends StatelessWidget {
                           color: Colors.grey[600],
                         ),
                       ),
-                      const SizedBox(width: 4),
                       Text(
                         '•',
                         style: TextStyle(
@@ -83,7 +84,6 @@ class CustomListTile extends StatelessWidget {
                           color: Colors.grey[600],
                         ),
                       ),
-                      const SizedBox(width: 4),
                       Text(
                         article.source?.name ?? "BBC News",
                         style: TextStyle(

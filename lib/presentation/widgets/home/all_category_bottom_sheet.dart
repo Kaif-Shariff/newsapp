@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:newsapp/core/apptheme/colors.dart';
 import 'package:newsapp/presentation/screens/category_screen.dart';
+import 'package:newsapp/utils/constants.dart';
 import 'package:newsapp/utils/getTheme.dart';
 
 import '../../screens/article_screen.dart';
