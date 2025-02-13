@@ -7,13 +7,13 @@ class NewsRepository {
 
   NewsRepository(this.apiService);
 
-  Future<List<ArticleModel>> fetchTopHeadlines() async {
+  Future<List<ArticleModel>> fetchTopHeadlines(int pageSize) async {
     try {
-      final res = await apiService.getTopHeadlines("in", apiKey, 5);
+      final res = await apiService.getTopHeadlines("in", apiKey, pageSize);
       if (res.articles.isNotEmpty) {
         return res.articles;
       }
-      final fallbackResponse = await apiService.getEverything("news", apiKey, 1, 5);
+      final fallbackResponse = await apiService.getEverything("news", apiKey, 1, pageSize);
       return fallbackResponse.articles;
     } catch (e) {
       throw Exception("Error fetching top headlines");

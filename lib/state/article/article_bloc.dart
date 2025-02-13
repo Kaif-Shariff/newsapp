@@ -15,7 +15,7 @@ class ArticleBloc extends Bloc<ArticleEvent, ArticleState> {
   Future<void> _onFetchTopHeadlines(FetchTopHeadlines event, Emitter<ArticleState> emit) async {
     emit(ArticleLoading());
     try {
-      final article = await repository.fetchTopHeadlines();
+      final article = await repository.fetchTopHeadlines(event.pageSize);
       emit(ArticleLoaded(article));
     } catch (e) {
       emit(

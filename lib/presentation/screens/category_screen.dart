@@ -19,49 +19,15 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
-  final ScrollController _scrollController = ScrollController();
-
   @override
   void initState() {
     super.initState();
-    _scrollController.addListener(_onScroll);
     _fetchCategoryNews();
   }
 
   void _fetchCategoryNews() {
     context.read<CategoryBloc>().add(ResetCategoryEvent());
-    context.read<CategoryBloc>().add(FetchCategoryEvent(widget.topicName));
-  }
-
-  @override
-  void didUpdateWidget(covariant CategoryScreen oldWidget) {
-    super.didUpdateWidget(oldWidget);
-    if (oldWidget.topicName != widget.topicName) {
-      _fetchCategoryNews();
-    }
-  }
-
-  void _onScroll() {
-    final maxScroll = _scrollController.position.maxScrollExtent;
-    final currentScroll = _scrollController.position.pixels;
-
-    if (currentScroll >= maxScroll - 800) {
-      final state = context.read<CategoryBloc>().state;
-      if (state is CategoryLoaded && !state.isLoadingMore && !state.hasReachedMax) {
-        context.read<CategoryBloc>().add(
-              FetchCategoryEvent(
-                widget.topicName,
-                page: state.page + 1,
-              ),
-            );
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    _scrollController.dispose();
-    super.dispose();
+    context.read<CategoryBloc>().add(FetchCategoryEvent(widget.topicName, 20));
   }
 
   @override
@@ -71,7 +37,6 @@ class _CategoryScreenState extends State<CategoryScreen> {
     return Scaffold(
       appBar: AppBar(title: Text(widget.topicName)),
       body: CustomScrollView(
-        controller: _scrollController,
         slivers: [
           BlocBuilder<CategoryBloc, CategoryState>(
             builder: (context, state) {

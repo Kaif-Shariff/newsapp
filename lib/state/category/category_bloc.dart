@@ -22,14 +22,14 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
     }
 
     try {
-      final newArticles = await repository.fetchCategoryNews(topic: event.topic, page: event.page);
+      final newArticles = await repository.fetchCategoryNews(topic: event.topic, page: event.pageSize);
 
       final hasReachedMax = newArticles.length < 6;
       final allArticles = currentState is CategoryLoaded ? [...currentState.articles, ...newArticles] : newArticles;
 
       emit(CategoryLoaded(
         allArticles,
-        event.page,
+        event.pageSize,
         hasReachedMax,
         isLoadingMore: false,
       ));
@@ -43,6 +43,6 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   }
 
   void _onResetCategory(ResetCategoryEvent event, Emitter<CategoryState> emit) {
-    emit(CategoryInitial()); // Reset the state to initial
+    emit(CategoryInitial());
   }
 }

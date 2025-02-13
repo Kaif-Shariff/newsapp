@@ -24,7 +24,7 @@ class _NewsListState extends State<NewsList> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ArticleBloc>().add(FetchCategory(widget.topic));
+      context.read<ArticleBloc>().add(FetchCategory(widget.topic, 20));
     });
   }
 

@@ -25,7 +25,7 @@ class _CarouselContainerState extends State<CarouselContainer> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      context.read<ArticleBloc>().add(FetchTopHeadlines());
+      context.read<ArticleBloc>().add(FetchTopHeadlines(5));
     });
   }
 
